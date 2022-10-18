@@ -17,24 +17,26 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     @Transactional // спринг автоматически управляет открытием и закрытием транзакций
     public List<Employee> getAllEmployees() {
+
         return employeeDAO.getAllEmployees();
     }
 
-//    @Override
-//    @Transactional
-//    public void saveEmployee(Employee employee) {
-//        employeeDAO.saveEmployee(employee);
-//    }
-//
-//    @Override
-//    @Transactional
-//    public Employee getEmployee(int id) {
-//        return employeeDAO.getEmployee(id);
-//    }
-//
-//    @Override
-//    @Transactional
-//    public void deleteEmployee(int id) {
-//        employeeDAO.deleteEmployee(id);
-//    }
+    @Override
+    @Transactional
+    public void saveEmployee(Employee employee) {
+        employeeDAO.saveEmployee(employee);
+    }
+
+    @Override
+    @Transactional
+    public Employee getEmployee(int id) {
+
+        return employeeDAO.getEmployee(id);
+    }
+
+    @Override
+    @Transactional
+    public void deleteEmployee(int id) {
+        employeeDAO.deleteEmployee(id);
+    }
 }

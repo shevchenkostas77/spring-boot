@@ -16,9 +16,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public List<Employee> getAllEmployees() {
-
         Session session = entityManager.unwrap(Session.class);
-
         Query<Employee> query = session.createQuery("from Employee"
                 , Employee.class);
         List<Employee> allEmplyees = query.getResultList();
@@ -26,30 +24,26 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         return allEmplyees;
     }
 
-//    @Override
-//    public void saveEmployee(Employee employee) {
-//        Session session = sessionFactory.getCurrentSession();
-//        session.saveOrUpdate(employee);
-//    }
-//
-//    @Override
-//    public Employee getEmployee(int id) {
-//        Session session = sessionFactory.getCurrentSession();
-//        Employee employee = session.get(Employee.class, id);
-//        return employee;
-//    }
-//
-//    @Override
-//    public void deleteEmployee(int id) {
-//        Session session = sessionFactory.getCurrentSession();
-//
-////        Employee employee = session.get(Employee.class, id);
-////        session.delete(employee);
-//
-//        Query<Employee> query = session.createQuery("delete from Employee " +
-//                "where id = :employeeId");
-//        query.setParameter("employeeId", id);
-//        query.executeUpdate();
-//    }
+    @Override
+    public void saveEmployee(Employee employee) {
+        Session session = entityManager.unwrap(Session.class);
+        session.saveOrUpdate(employee);
+    }
 
+    @Override
+    public Employee getEmployee(int id) {
+        Session session = entityManager.unwrap(Session.class);
+        Employee employee = session.get(Employee.class, id);
+
+        return employee;
+    }
+
+    @Override
+    public void deleteEmployee(int id) {
+        Session session = entityManager.unwrap(Session.class);
+        Query<Employee> query = session.createQuery("delete from Employee " +
+                "where id = :employeeId");
+        query.setParameter("employeeId", id);
+        query.executeUpdate();
+    }
 }
